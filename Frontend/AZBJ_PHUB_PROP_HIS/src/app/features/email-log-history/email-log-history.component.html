@@ -1,0 +1,33 @@
+<div class="email-log-history" style="background-color: gray; padding: 20px;">
+  <h1 style="text-align: center;">Requirement Despatch</h1>
+  <table style="width: 100%; border-collapse: collapse;">
+    <thead>
+      <tr>
+        <th style="border: 1px solid black; padding: 8px;">E-Mail Status</th>
+        <th style="border: 1px solid black; padding: 8px;">Date of E-Mail Sent</th>
+        <th style="border: 1px solid black; padding: 8px;">Registered E-Mail ID</th>
+        <th style="border: 1px solid black; padding: 8px;">Policy Bond or EIA Letter</th>
+        <th style="border: 1px solid black; padding: 8px;">No. of success mails</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let log of emailLogs; let i = index" [hidden]="i >= 7">
+        <td style="border: 1px solid black; padding: 8px;">
+          <input type="text" [(ngModel)]="log.emailStatus" maxlength="100" style="background-color: white; font-family: Arial; font-weight: bold;" />
+        </td>
+        <td style="border: 1px solid black; padding: 8px; background-color: white; font-family: Arial; font-weight: bold;">
+          {{ log.dateOfEmailSent | date: 'dd-MMM-yy hh:mm:ss a' }}
+        </td>
+        <td style="border: 1px solid black; padding: 8px; background-color: white; font-family: Arial; font-weight: bold;">
+          {{ log.registeredEmailId }}
+        </td>
+        <td style="border: 1px solid black; padding: 8px; background-color: white; font-family: Arial; font-weight: bold;">
+          {{ log.policyBondOrEiaLetter }}
+        </td>
+        <td style="border: 1px solid black; padding: 8px; background-color: white; font-family: Arial; font-weight: bold;">
+          {{ log.noOfSuccessMails }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

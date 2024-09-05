@@ -1,0 +1,196 @@
+<div class="control-component">
+  <form>
+    <!-- BI Number Field -->
+    <div class="form-group">
+      <label for="biNumber">BI Number</label>
+      <input type="text" id="biNumber" name="biNumber" [(ngModel)]="biNumber" (input)="onBiNumberInput($event.target.value)" placeholder="Enter BI Number">
+    </div>
+
+    <!-- Application Number Field -->
+    <div class="form-group">
+      <label for="applicationNumber">Application Number</label>
+      <input type="text" id="applicationNumber" name="applicationNumber" [(ngModel)]="applicationNumber" readonly placeholder="Application Number">
+    </div>
+
+    <!-- Receipt Number Field -->
+    <div class="form-group">
+      <label for="receiptNumber">Receipt Number</label>
+      <input type="text" id="receiptNumber" name="receiptNumber" [(ngModel)]="receiptNumber" placeholder="Enter Receipt Number">
+    </div>
+
+    <!-- Proposal Number Field -->
+    <div class="form-group">
+      <label for="proposalNumber">Proposal Number</label>
+      <input type="text" id="proposalNumber" name="proposalNumber" [(ngModel)]="proposalNumber" placeholder="Enter Proposal Number">
+    </div>
+
+    <!-- Scrutiny Number Field -->
+    <div class="form-group">
+      <label for="scrutinyNumber">Scrutiny Number</label>
+      <input type="text" id="scrutinyNumber" name="scrutinyNumber" [(ngModel)]="scrutinyNumber" placeholder="Enter Scrutiny Number">
+    </div>
+
+    <!-- Status Button -->
+    <button
+      id="statusButton"
+      (click)="onStatusButtonClick()"
+      style="position: absolute; left: 17px; top: 63px; width: 48px; height: 17px; background-color: gray; color: black; font-family: 'Tahoma'; font-size: 9pt; font-weight: bold;">
+      Status
+    </button>
+
+    <!-- Exit Button -->
+    <button
+      id="exitButton"
+      (click)="onExitButtonClick()"
+      style="position: absolute; left: 285px; top: 230px; width: 53px; height: 16px; background-color: gray; color: black; font-family: 'Tahoma'; font-size: 9pt; font-weight: bold;">
+      Exit
+    </button>
+
+    <!-- Clear Button -->
+    <button
+      id="clearButton"
+      (click)="clearForm()"
+      style="position: absolute; left: 400px; top: 63px; width: 40px; height: 17px; background-color: gray; color: black; font-family: 'MS Sans Serif'; font-size: 9pt; font-weight: 500;">
+      Clear
+    </button>
+
+    <!-- PAN Approved Details Button -->
+    <button
+      id="panApprovedDetailsButton"
+      (click)="onPanApprovedDetailsButtonClick()"
+      style="position: absolute; left: 400px; top: 100px; width: 150px; height: 30px; background-color: blue; color: white; font-family: 'Tahoma'; font-size: 9pt; font-weight: bold;">
+      PAN Approved Details
+    </button>
+
+    <!-- DE LINKED Reasons Button -->
+    <button
+      id="deLinkedReasonsButton"
+      (click)="onDeLinkedReasonsButtonClick()"
+      style="position: absolute; left: 400px; top: 150px; width: 150px; height: 30px; background-color: green; color: white; font-family: 'Tahoma'; font-size: 9pt; font-weight: bold;">
+      DE LINKED Reasons
+    </button>
+
+    <div *ngIf="showReasonCommentsSection">
+      <div *ngFor="let comment of reasonComments">
+        <p>{{comment.reason}}</p>
+        <p>{{comment.comments}}</p>
+        <p>{{comment.userId}}</p>
+        <p>{{comment.commentDate}}</p>
+      </div>
+    </div>
+
+    <div *ngIf="message">{{message}}</div>
+
+    <button
+      id="requirementDetailButton"
+      (click)="onRequirementDetailButtonClick()"
+      style="background-color: blue; color: white; font-family: 'Tahoma'; font-size: 9pt; font-weight: bold;">
+      Requirement Detail
+    </button>
+
+    <div *ngIf="requirementDetails.length > 0">
+      <ul>
+        <li *ngFor="let detail of requirementDetails">
+          <p>Requirement Type: {{detail.REQ_TYPE}}</p>
+          <p>Description: {{detail.sys_desc}}</p>
+          <p>Raised Date: {{detail.REQ_RAISED_DATE}}</p>
+        </li>
+      </ul>
+    </div>
+
+    <div *ngIf="message">{{message}}</div>
+
+    <button
+      id="uwButton"
+      (click)="onUWButtonClick()"
+      style="background-color: gray; color: black; font-family: 'Tahoma'; font-size: 9pt; font-weight: bold;">
+      UW(NonConfidential)
+    </button>
+
+    <div id="uw-section">
+      <div *ngFor="let remark of remarks">
+        <p>{{remark}}</p>
+      </div>
+      <div *ngFor="let comment of comments">
+        <p>{{comment}}</p>
+      </div>
+    </div>
+
+    <button
+      id="downloadExcelButton"
+      (click)="downloadDataToExcel()"
+      style="background-color: orange; color: white; font-family: 'Tahoma'; font-size: 9pt; font-weight: bold;">
+      Download Data to Excel
+    </button>
+
+    <!-- PHOD Field -->
+    <div class="form-group" style="position: absolute; left: 433px; top: 100px; width: 50px; height: 17px; visibility: hidden;">
+      <label for="PHOD" style="font-family: 'Tahoma'; font-size: 9pt; font-weight: bold; color: red;">PHOD</label>
+      <input type="text" id="PHOD" name="PHOD" value="PHOD" maxlength="30" style="width: 100%; height: 100%; background-color: yellow; color: red; font-family: 'Tahoma'; font-weight: bold; text-align: center;">
+    </div>
+
+    <button
+      id="proposalMedicalStatusButton"
+      (click)="onProposalMedicalStatusClick()"
+      style="background-color: purple; color: white; font-family: 'Tahoma'; font-size: 9pt; font-weight: bold;">
+      Proposal Medical status
+    </button>
+
+    <div *ngIf="customerCallHistory.length > 0">
+      <ul>
+        <li *ngFor="let history of customerCallHistory">
+          <p>Call Date: {{history.callDate}}</p>
+          <p>Caller ID: {{history.callerId}}</p>
+          <p>Status: {{history.status}}</p>
+          <p>Sub Status: {{history.subStatus}}</p>
+          <p>Medical Status: {{history.medicalStatus}}</p>
+        </li>
+      </ul>
+    </div>
+
+    <div *ngIf="message">{{message}}</div>
+
+    <!-- Email Log Button -->
+    <button
+      id="emailLogButton"
+      (click)="onEmailLogButtonClick()"
+      style="background-color: blue; color: white; font-family: 'Tahoma'; font-size: 9pt; font-weight: bold;">
+      Email Log
+    </button>
+
+    <!-- Email History Table -->
+    <div *ngIf="emailHistory.length > 0">
+      <table>
+        <thead>
+          <tr>
+            <th>Document Type</th>
+            <th>Email Status</th>
+            <th>Updated On</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let history of emailHistory">
+            <td>{{history.table_data}}</td>
+            <td>{{history.mail_flag}}</td>
+            <td>{{history.updated_on}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Successful Email Count -->
+    <div *ngIf="successfulEmailCount >= 0">
+      <p>Successful Emails Sent: {{successfulEmailCount}}</p>
+    </div>
+
+    <div *ngIf="message">{{message}}</div>
+
+    <!-- EIA Details Button -->
+    <button
+      id="eiaDetailsButton"
+      (click)="onEiaDetailsClick()"
+      style="background-color: teal; color: white; font-family: 'Tahoma'; font-size: 9pt; font-weight: bold;">
+      EIA Details
+    </button>
+  </form>
+</div>

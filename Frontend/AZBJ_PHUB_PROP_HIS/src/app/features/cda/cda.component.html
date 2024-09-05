@@ -1,0 +1,8 @@
+<div class="cda-section" style="position: absolute; top: 273px; left: 637px; width: 84px; height: 103px; overflow-y: scroll;">
+  <div *ngFor="let record of records; let i = index" [style.display]="i < 6 ? 'block' : 'none'">
+    <label for="deliveryDateField" style="position: absolute; left: -73px; top: -22px; font-family: Tahoma; font-size: 8pt; font-weight: bold;">Delivery Date</label>
+    <input id="deliveryDateField" type="text" [value]="record.deliveryDate" readonly
+      style="position: absolute; top: 0; left: 0; width: 84px; max-length: 50; background-color: white; color: black; font-family: Tahoma; font-size: 8pt; font-weight: 300; text-align: right;" />
+  </div>
+</div>
+<div class="scrollbar" style="position: absolute; top: 273px; left: 722px; width: 14px; height: 103px; overflow-y: scroll;"></div>

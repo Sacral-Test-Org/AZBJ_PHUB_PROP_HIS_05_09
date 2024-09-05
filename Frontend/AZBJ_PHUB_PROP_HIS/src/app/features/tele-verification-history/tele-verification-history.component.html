@@ -1,0 +1,48 @@
+<div class="tele-verification-history">
+  <h2>Tele Verification History</h2>
+  <div class="modal" tabindex="-1" role="dialog" aria-labelledby="teleVerificationHistoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="teleVerificationHistoryModalLabel">Tele Verification History</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table>
+            <thead>
+              <tr>
+                <th>Request No</th>
+                <th>Main Status</th>
+                <th>Sub Status</th>
+                <th>Approval Remarks</th>
+                <th>Caller ID</th>
+                <th>Call Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let record of teleVerificationHistory | slice:0:7">
+                <td>{{ record.requestNo }}</td>
+                <td>{{ record.mainStatus }}</td>
+                <td>{{ record.subStatus }}</td>
+                <td>{{ record.approvalRemarks }}</td>
+                <td>{{ record.callerId }}</td>
+                <td>{{ record.callTime | date:'dd-MMM-yyyy HH:mm:ss' }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div *ngIf="teleVerificationHistory.length > 7" class="scrollbar" (scroll)="scrollHandler($event)">
+            <p>Scroll for more records...</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+</div>

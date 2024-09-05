@@ -1,0 +1,28 @@
+<div class="reason-comments-section">
+  <h2>Reasons and Comments</h2>
+  <div class="comments-container" style="max-height: 400px; overflow-y: auto;">
+    <div *ngFor="let comment of comments; let i = index" [attr.data-index]="i" *ngIf="i < 6">
+      <div class="comment-item" style="display: flex; justify-content: space-between; background-color: gray; padding: 10px; margin-bottom: 5px;">
+        <div style="flex: 1;">
+          <label for="reason-{{i}}">Reason:</label>
+          <input id="reason-{{i}}" type="text" [value]="comment.reason" maxlength="100" style="background-color: gray; color: black;" readonly />
+        </div>
+        <div style="flex: 2;">
+          <label for="comments-{{i}}">Comments:</label>
+          <input id="comments-{{i}}" type="text" [value]="comment.comments" maxlength="500" style="background-color: gray; color: black;" readonly />
+        </div>
+        <div style="flex: 1;">
+          <label for="userID-{{i}}">User ID:</label>
+          <input id="userID-{{i}}" type="text" [value]="comment.userID" maxlength="50" style="background-color: gray; color: black;" readonly />
+        </div>
+        <div style="flex: 1;">
+          <label for="commentDate-{{i}}">Comment Date:</label>
+          <input id="commentDate-{{i}}" type="text" [value]="comment.commentDate | date:'dd/MM/yy hh:mm a'" maxlength="50" style="background-color: gray; color: black;" readonly />
+        </div>
+      </div>
+    </div>
+  </div>
+  <button (click)="onExitClick()" style="position: absolute; left: 141px; top: 169px; width: 84px; height: 19px; background-color: gray; color: black; font-family: 'Tahoma'; font-size: 8pt; font-weight: bold;">Exit</button>
+  <button (click)="viewDataEnrichment()" style="background-color: #4CAF50; color: black; margin-top: 10px;">View Data Enrichment</button>
+</div>
+<button (click)="loadMoreComments()" style="background-color: #4CAF50; color: black; margin-top: 10px;">Load More Comments</button>

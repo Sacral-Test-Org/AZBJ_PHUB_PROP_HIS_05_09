@@ -1,0 +1,37 @@
+<div class="uw-section" *ngIf="uwDataList.length > 0">
+  <div *ngFor="let uwData of uwDataList | slice:0:6" class="uw-field-container">
+    <label class="uw-prompt">UW Field:</label>
+    <input type="text" class="uw-field" [value]="formatUWField(uwData)" readonly />
+  </div>
+</div>
+
+<style>
+  .uw-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .uw-field-container {
+    display: flex;
+    align-items: center;
+  }
+  .uw-prompt {
+    font-family: Tahoma, sans-serif;
+    font-size: 8pt;
+    font-weight: bold;
+    text-align: left;
+    margin-right: 10px;
+  }
+  .uw-field {
+    font-family: Tahoma, sans-serif;
+    font-size: 8pt;
+    font-weight: 300;
+    text-align: right;
+    background-color: white;
+    color: black;
+    width: 100%;
+    max-width: 2000px;
+    border: none;
+    outline: none;
+  }
+</style>

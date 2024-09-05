@@ -1,0 +1,20 @@
+<div class="pan-approval-details">
+  <h2>PAN Approval Details</h2>
+  <table>
+    <tr>
+      <th>Approval ID</th>
+      <th>Approval Name</th>
+      <th>Approval Date</th>
+      <th>Approval Time</th>
+      <th>Approval Decision</th>
+    </tr>
+    <tr *ngFor="let approval of approvals">
+      <td>{{ approval.id }}</td>
+      <td>{{ approval.name }}</td>
+      <td>{{ approval.date | date }}</td>
+      <td>{{ approval.time }}</td>
+      <td>{{ approval.decision }}</td>
+    </tr>
+  </table>
+  <button (click)="exitButtonHandler()">EXIT</button>
+</div>

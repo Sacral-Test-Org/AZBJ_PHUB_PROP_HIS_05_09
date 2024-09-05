@@ -1,0 +1,64 @@
+<div class="eia-process-status">
+  <div class="status-field">
+    <label for="status">Status:</label>
+    <input type="text" id="status" name="status" [value]="status" readonly>
+  </div>
+  <div class="description-field">
+    <label for="description">Description:</label>
+    <input type="text" id="description" name="description" [value]="description" readonly>
+  </div>
+  <div class="user-field">
+    <label for="user">User:</label>
+    <input type="text" id="user" name="user" [value]="user" readonly>
+  </div>
+  <div class="date-field">
+    <label for="date">Date:</label>
+    <input type="text" id="date" name="date" [value]="date" readonly>
+  </div>
+  <button (click)="onExitClick()" class="exit-button">Exit</button>
+</div>
+
+<style>
+.eia-process-status {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #333;
+}
+
+.eia-process-status .status-field,
+.eia-process-status .description-field,
+.eia-process-status .user-field,
+.eia-process-status .date-field {
+  margin-bottom: 10px;
+}
+
+.eia-process-status label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.eia-process-status input {
+  border: 1px solid #ccc;
+  padding: 5px;
+  width: 300px;
+}
+
+.eia-process-status .exit-button {
+  position: absolute;
+  left: 258px;
+  top: 286px;
+  width: 70px;
+  height: 21px;
+  font-family: 'MS Sans Serif';
+  font-size: 8pt;
+  font-weight: bold;
+  background-color: gray;
+  color: black;
+  border: none;
+  cursor: pointer;
+}
+
+.eia-process-status .exit-button:hover {
+  background-color: #0056b3;
+}
+</style>
